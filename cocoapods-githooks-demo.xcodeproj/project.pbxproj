@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F15D0C679EBC5D5861452B5 /* libPods-cocoapods-githooks-demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 825AFF41A3B1118D349919F9 /* libPods-cocoapods-githooks-demo.a */; };
 		70A00131208E22C900894317 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A00130208E22C900894317 /* AppDelegate.swift */; };
 		70A00133208E22C900894317 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A00132208E22C900894317 /* ViewController.swift */; };
 		70A00136208E22C900894317 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A00134208E22C900894317 /* Main.storyboard */; };
@@ -22,6 +23,9 @@
 		70A00137208E22CA00894317 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70A0013A208E22CA00894317 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70A0013C208E22CA00894317 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		825AFF41A3B1118D349919F9 /* libPods-cocoapods-githooks-demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cocoapods-githooks-demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C40C56D602118498E14898BA /* Pods-cocoapods-githooks-demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cocoapods-githooks-demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cocoapods-githooks-demo/Pods-cocoapods-githooks-demo.debug.xcconfig"; sourceTree = "<group>"; };
+		CD33650A148ADD508495A6CB /* Pods-cocoapods-githooks-demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cocoapods-githooks-demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-cocoapods-githooks-demo/Pods-cocoapods-githooks-demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F15D0C679EBC5D5861452B5 /* libPods-cocoapods-githooks-demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				70A0012F208E22C900894317 /* cocoapods-githooks-demo */,
 				70A0012E208E22C900894317 /* Products */,
+				B305B8AA63982A48EC21CEDB /* Pods */,
+				7A308B2217624A339984E59E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = "cocoapods-githooks-demo";
 			sourceTree = "<group>";
 		};
+		7A308B2217624A339984E59E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				825AFF41A3B1118D349919F9 /* libPods-cocoapods-githooks-demo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B305B8AA63982A48EC21CEDB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C40C56D602118498E14898BA /* Pods-cocoapods-githooks-demo.debug.xcconfig */,
+				CD33650A148ADD508495A6CB /* Pods-cocoapods-githooks-demo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70A0013F208E22CA00894317 /* Build configuration list for PBXNativeTarget "cocoapods-githooks-demo" */;
 			buildPhases = (
+				08AE0D05445E10E8F197FE05 /* [CP] Check Pods Manifest.lock */,
 				70A00129208E22C900894317 /* Sources */,
 				70A0012A208E22C900894317 /* Frameworks */,
 				70A0012B208E22C900894317 /* Resources */,
+				70A00142208E252A00894317 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -129,6 +155,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		08AE0D05445E10E8F197FE05 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cocoapods-githooks-demo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70A00142208E252A00894317 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		70A00129208E22C900894317 /* Sources */ = {
@@ -278,6 +338,7 @@
 		};
 		70A00140208E22CA00894317 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C40C56D602118498E14898BA /* Pods-cocoapods-githooks-demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -296,6 +357,7 @@
 		};
 		70A00141208E22CA00894317 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD33650A148ADD508495A6CB /* Pods-cocoapods-githooks-demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
