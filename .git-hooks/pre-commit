@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#Path to swiftlint
+SWIFT_LINT=Pods/SwiftLint/swiftlint
+
+#if $SWIFT_LINT >/dev/null 2>&1; then
+if [[ -e "${SWIFT_LINT}" ]]; then
+    count=0
+    for file_path in $(git ls-files -m --exclude-from=.gitignore | grep ".swift$"); do
+        export SCRIPT_INPUT_FILE_$count=$file_path
+        count=$((count + 1))
+    done
+
+##### Check for modified files in unstaged/Staged area #####
+    for file_path in $(git diff --name-only --cached | grep ".swift$"); do
+        export SCRIPT_INPUT_FILE_$count=$file_path
+        count=$((count + 1))
+    done
+
+##### Make the count avilable as global variable #####
+    export SCRIPT_INPUT_FILE_COUNT=$count
+
+    echo "${SCRIPT_INPUT_FILE_COUNT}"
+
+##### Lint files or exit if no files found for lintint #####
+    if [ "$count" -ne 0 ]; then
+        echo "Linting swift files..."
+        $SWIFT_LINT --use-script-input-files --config gift-cards-sdk/.swiftlint.yml --strict
+    else
+        echo "No files to lint!"
+        exit 0
+    fi
+
+    RESULT=$?
+
+    if [ $RESULT -eq 0 ]; then
+        echo ""
+        echo "No swift style and convention violations found"
+    else
+        echo ""
+        echo "Swift style or convention violations found! Must fix before commit!"
+    fi
+
+    exit $RESULT
+
+else
+#### If SwiftLint is not installed, do not allow commit
+    echo "warning: SwiftLint pod not installed, run 'pod install' to install required dependencies before commiting"
+    exit 1
+fi
